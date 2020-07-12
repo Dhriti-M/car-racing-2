@@ -25,6 +25,9 @@ class Game{
             form=new Form();
             form.display();
         }
+        car1=createSprite(100,200,50,50);
+        car2=createSprite(200,200,50,50);
+        carset=[car1,car2];
     }
      
     play(){
@@ -32,13 +35,20 @@ class Game{
         text("PLAY NOW",120,100);
         Player.getAllPlayersInfo();
         if(allplayers!==undefined){
-            var y =120;
+            var y ,x,index;
+            index=0;
+            x=100;
             for(var plr in allplayers){
-                if(plr==="player"+player.index){
-                    fill("red");
-                }
-            text(allplayers[plr].Name+":"+allplayers[plr].Distance,100,y);
-            y=y+50;
+              y=displayHeight-allplayers[plr].Distance;
+              carset[index].y = y;
+              carset[index].x = x;
+              x=x+100;
+              index=index+1;
+              if(index===player.index){
+                  carset[index-1].shapeColor="red";
+                  camera.position.x=displayWidth/2;
+                  camera.position.y=carset[index-1].y;
+              }
             }
         }
            if (keyIsDown(UP_ARROW)&&player.index!==null){

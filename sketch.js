@@ -5,11 +5,13 @@ var distance=0;
 
 var form , game , player ;
 var database;
+var car1,car2;
+var carset=[];
 
 
 function setup(){
 
-    createCanvas(800,800);
+    createCanvas(displayWidth,displayHeight);
 
 
     database=firebase.database();
@@ -18,9 +20,19 @@ function setup(){
     game.getGamestate();
     game.start();
 
+    
+
 
 }
 
 function draw(){
-
+if (playercount===2){
+    game.updateGameState(1);
+}
+if (gamestate===1){
+    clear();
+    game.play();
+}
+drawSprites();
+    
 }

@@ -24,7 +24,8 @@ class Form{
             this.button.hide();
             player.name= this.inputbox.value();
             playercount=playercount+1;
-            player.index=playercout+1;
+            player.index=playercount;
+            console.log(playercount);
             player.updatePlayerCount(playercount);
             player.updatePlayerInfo();
             this.greet.html("Welcome"+player.name);
